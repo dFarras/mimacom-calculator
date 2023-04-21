@@ -83,8 +83,14 @@ public class CalculatorControllerIT {
     }
 
     @Test
-    @Disabled("Until operation validator is created")
     public void attemptingAnOperationWhereAnyOperandIsNotANumberShouldReturnA400BadRequest() throws Exception {
+        this.mockMvc.perform(
+                MockMvcRequestBuilders
+                        .post("/calculate")
+                        .param("operation", "5.2-+4")
+        ).andExpect(
+                status().isBadRequest()
+        );
     }
 
 }

@@ -1,5 +1,6 @@
 package mimacom.calculator.bigdecimal;
 
+import mimacom.calculator.exceptionhandlers.exceptions.ErrorCatalog;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ public class BigDecimalConverter {
         try {
             return new BigDecimal(value, context);
         } catch (NumberFormatException e) {
-            throw new RuntimeException();
+            throw ErrorCatalog.NOT_A_NUMBER.getException();
         }
     }
 

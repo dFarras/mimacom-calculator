@@ -26,7 +26,8 @@ public class OperationMapperTest {
     @Test
     public void fromBuildsAnOperationFromItsHelpersResults() {
         Operator operator = new Add();
-        Operation expectation = new Operation(new BigDecimal("5"), new BigDecimal("4"), operator);
+        Operands operands = new Operands(new BigDecimal("5"), new BigDecimal("4"));
+        Operation expectation = new Operation(operands, operator);
         String rawOperation = "5+4";
         OperatorIndexTuple index = new OperatorIndexTuple(1, operator);
         Mockito.when(this.operatorHelper.findOperatorIndex(rawOperation)).thenReturn(index);
