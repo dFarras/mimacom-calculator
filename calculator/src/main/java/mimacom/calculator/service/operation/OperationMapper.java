@@ -14,10 +14,13 @@ public class OperationMapper {
 
     public Operation from(String operation) {
         OperatorIndexTuple operatorIndexTuple = this.operatorHelper.findOperatorIndex(operation);
-        String rawLeft = operation.substring(0, operatorIndexTuple.index());
-        BigDecimal left = this.bigDecimalConverter.from(rawLeft);
-        String rawRight = operation.substring(operatorIndexTuple.index() + 1);
-        BigDecimal right = this.bigDecimalConverter.from(rawRight);
-        return new Operation(left, right, operatorIndexTuple.operator());
+        Operands operands = this.getOperand(operation, operatorIndexTuple.index());
+        return new Operation(operands, operatorIndexTuple.operator());
+    }
+
+    private Operands getOperand(String operation, int operatorIndex) {
+        BigDecimal left = this.bigDecimalConverter.from(operation.substring(0, operatorIndex));
+        BigDecimal right = this.bigDecimalConverter.from(operation.substring(operatorIndex + 1));
+        return new Operands(left, right);
     }
 }
