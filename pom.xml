@@ -25,6 +25,7 @@
     <maven.failsafe.plugin.version>3.0.0</maven.failsafe.plugin.version>
     <junit.platform.surefire.provider.version>1.3.2</junit.platform.surefire.provider.version>
     <snakeyaml.version>2.0</snakeyaml.version>
+    <tracer.version>1.0.0</tracer.version>
   </properties>
 
   <dependencyManagement>
