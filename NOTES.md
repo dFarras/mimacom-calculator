@@ -10,6 +10,7 @@ Make it an abstract tree where left and right might ot might not be strict opera
 Document decimal configuration, document in general the API (also the need to escape operators + -> %2b)
 Create a validator for the rawOperation
 Research if equals and hashcode are required for records
+Find a way to fail "gracefully" on reporter call
 
 ## COMMON
 Create specific exception for BigDecimalConverter

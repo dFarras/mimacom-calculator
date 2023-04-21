@@ -1,7 +1,7 @@
 package mimacom.calculator.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import mimacom.calculator.reporter.Reporter;
 import mimacom.calculator.service.operation.Operation;
 import mimacom.calculator.service.operation.OperationMapper;
 import mimacom.calculator.service.operation.operators.Operator;
@@ -25,12 +25,14 @@ public class CalculatorSrcTest {
     private Operation operation;
     @Mock
     private OperationMapper mapper;
+    @Mock
+    private Reporter reporter;
 
     @InjectMocks
     private CalculatorSrv calculatorSrv;
 
     @Test
-    public void doCalculateReturnsOperatorResolveResult() {
+    public void doCalculateReturnsOperatorResolveResult() throws JsonProcessingException {
         String rawOperation = "5+4";
         BigDecimal expectation = new BigDecimal("1");
         Mockito.when(this.mapper.from(rawOperation)).thenReturn(this.operation);
@@ -39,6 +41,7 @@ public class CalculatorSrcTest {
 
         BigDecimal result = this.calculatorSrv.doCalculate(rawOperation);
 
+        Mockito.verify(this.reporter, Mockito.times(1)).trace(any());
         Assertions.assertEquals(expectation, result);
     }
 }
