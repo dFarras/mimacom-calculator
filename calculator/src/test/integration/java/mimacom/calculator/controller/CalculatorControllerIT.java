@@ -23,7 +23,7 @@ public class CalculatorControllerIT {
     private MockMvc mockMvc;
 
     @Test
-    public void theAdditionOfTwoIntegersShouldResultIn200OKWithProperResult() throws Exception {
+    public void additionOfTwoIntegersShouldResultIn200OKWithProperResult() throws Exception {
         MvcResult result = this.mockMvc.perform(
                 MockMvcRequestBuilders
                         .post("/calculate")
@@ -38,7 +38,7 @@ public class CalculatorControllerIT {
     }
 
     @Test
-    public void theAdditionOfDecimalsSHouldResultIn200OKWithProperResult() throws Exception {
+    public void additionOfDecimalsSHouldResultIn200OKWithProperResult() throws Exception {
         MvcResult result = this.mockMvc.perform(
                 MockMvcRequestBuilders
                         .post("/calculate")
@@ -52,12 +52,39 @@ public class CalculatorControllerIT {
         Assertions.assertEquals("9.2", additionResult);
     }
 
+    @Test
+    public void subtractionOfTwoIntegersResultIn200OKWithProperResult() throws Exception {
+        MvcResult result = this.mockMvc.perform(
+                MockMvcRequestBuilders
+                        .post("/calculate")
+                        .param("operation", "5-4")
+        ).andExpect(
+                status().isOk()
+        ).andReturn();
+
+        String additionResult = result.getResponse().getContentAsString();
+
+        Assertions.assertEquals("1", additionResult);
+    }
+
+    @Test
+    public void subtractionOfTwoDecimalsResultIn200OKWithProperResult() throws Exception {
+        MvcResult result = this.mockMvc.perform(
+                MockMvcRequestBuilders
+                        .post("/calculate")
+                        .param("operation", "5.2-4")
+        ).andExpect(
+                status().isOk()
+        ).andReturn();
+
+        String additionResult = result.getResponse().getContentAsString();
+
+        Assertions.assertEquals("1.2", additionResult);
+    }
 
     @Test
     @Disabled("Until operation validator is created")
     public void attemptingAnOperationWhereAnyOperandIsNotANumberShouldReturnA400BadRequest() throws Exception {
-
     }
-
 
 }
