@@ -18,12 +18,12 @@
         <dependency>
             <groupId>mimacom.calculator</groupId>
             <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${internal.version}</version>
         </dependency>
         <dependency>
             <groupId>mimacom.calculator</groupId>
             <artifactId>tracer-connector</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${internal.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,7 +69,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
-
         </plugins>
     </build>
 </project>
